@@ -1,0 +1,12 @@
+# PACS - Sistema de Controle de Acesso
+Desenvolvimento para fins de estudos 
+com todo desenvolvimento sendo realizado na plataforma .NET 8.0.202 e 
+totalmente escrito na linguagem c#
+
+## REGRAS DE NEGÓCIO DO PACS
+ - INSERIR, VÁLIDAR, ATUALIZAR E DELETAR (OS ACESSOS DOS SUPOSTOS CLIENTES)
+ - DEFINIR UM PROCESSO DE LOGIN
+ - VERIFICAR NO "BANCO DE DADOS"
+ - RETORNAR VERDADEIRO OU FALSO (PARA REQUISIÇÃO DE CADA USUARIO)
+
+> TODO PROCESSO TEM FINALIDADE O ESTUDO DE CASO E TAMBÉM PARA APRIMORAR AS HABILIDADES
