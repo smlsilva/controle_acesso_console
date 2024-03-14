@@ -62,10 +62,29 @@ try {
 
     } else if(opcaoSelecionadaDoMenuInicial == 3) {
         // FAÇA ISSO
-        Console.WriteLine("OPÇÃO SELECIONADA COM SUCESSO");
+        Console.Clear();
+        Console.WriteLine("INFORME A SUA CHAVE SECRETA PARA VERIFICAR O SEU ACESSO");
+
+        try {
+            long? secretKeyUser = Convert.ToInt64(Console.ReadLine());
+
+            // VERIFICANDO SE A CHAVE ESTÁ COM ACESSO OU NÃO
+            if(secretKeyUser == 123121321313) {
+                Console.WriteLine("ACESSO LIBERADO");
+            } else {
+                Console.WriteLine("ACESSO NÃO ENCONTRADO");
+            }
+
+        } catch(Exception e) {
+            Console.WriteLine("Chave incorreta digite novamente " + e.Message);
+        }
+
+
+
     } else if(opcaoSelecionadaDoMenuInicial == 4) {
         // FAÇA ISSO
-        Console.WriteLine("OPÇÃO SELECIONADA COM SUCESSO");
+        Console.WriteLine("TCHAU :)");
+        Environment.Exit(0);
     } 
 } catch (Exception e) {
     Console.WriteLine("OPÇÃO SELECIONADA ESTÁ INCORRETA! " + e.Message);

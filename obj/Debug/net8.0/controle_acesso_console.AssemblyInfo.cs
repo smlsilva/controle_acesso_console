@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("controle_acesso_console")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f4e3341404b41b13ff353e5718bf14b56db1001d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c74d5b185017958ee2a86555aca13eae0636eeea")]
 [assembly: System.Reflection.AssemblyProductAttribute("controle_acesso_console")]
 [assembly: System.Reflection.AssemblyTitleAttribute("controle_acesso_console")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
