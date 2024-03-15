@@ -8,6 +8,10 @@ Console.WriteLine("2 - CADASTRAR USUARIO");
 Console.WriteLine("3 - VERIFICAR MEU ACESSO");
 Console.WriteLine("4 - SAIR\n");
 
+void LimparTela(){
+    Console.Clear();
+}
+
 try {
     // CAPTURANDO ESCOLHA DO USUARIO
     int? opcaoSelecionadaDoMenuInicial = Convert.ToInt32(Console.ReadLine());
@@ -38,7 +42,7 @@ try {
 
     } else if(opcaoSelecionadaDoMenuInicial == 2) {
         
-        Console.Clear();
+        LimparTela();
         Console.WriteLine("INSIRA A SUA CHAVE DE ADMINISTRADOR PARA CADASTRAR USUÁRIO");
         Console.WriteLine("##########################################################");
         
@@ -48,12 +52,12 @@ try {
             long? keyAdmUser = Convert.ToInt64(Console.ReadLine());
             
             if(keyAdmUser == 123456) {
-                Console.Clear();
+                LimparTela();
                 Console.WriteLine("ACESSO LIBERADO PARA CADASTRAR USUARIOS");
                 
                 // DESENVOLVER SISTEMA PARA CADASTRAR USUARIO
             } else {
-                Console.Clear();
+                LimparTela();
             }
 
         } catch(Exception e) {
@@ -62,7 +66,7 @@ try {
 
     } else if(opcaoSelecionadaDoMenuInicial == 3) {
         // FAÇA ISSO
-        Console.Clear();
+        LimparTela();
         Console.WriteLine("INFORME A SUA CHAVE SECRETA PARA VERIFICAR O SEU ACESSO");
 
         try {
