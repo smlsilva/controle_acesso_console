@@ -1,16 +1,29 @@
-﻿Console.WriteLine("## PACS - Sistema de Controle de Acesso ##\n");
+﻿void NomeSistema(){
+    Console.WriteLine("## PACS - Sistema de Controle de Acesso ##\n");
+}
 
-// DEFININDO TELA INICIAL PARA ACESSAR O SISTEMA
-Console.WriteLine("SELECIONE UMA DAS OPÇÕES ABAIXO:");
-Console.WriteLine("################################");
-Console.WriteLine("1 - ACESSAR O SISTEMA");
-Console.WriteLine("2 - CADASTRAR USUARIO");
-Console.WriteLine("3 - VERIFICAR MEU ACESSO");
-Console.WriteLine("4 - SAIR\n");
+void MenuIncial(){
+    Console.WriteLine("SELECIONE UMA DAS OPÇÕES ABAIXO:");
+    Console.WriteLine("################################");
+    Console.WriteLine("1 - ACESSAR O SISTEMA");
+    Console.WriteLine("2 - CADASTRAR USUARIO");
+    Console.WriteLine("3 - VERIFICAR MEU ACESSO");
+    Console.WriteLine("4 - SAIR\n");
+}
 
 void LimparTela(){
     Console.Clear();
 }
+
+NomeSistema();
+MenuIncial();
+
+Dictionary<string, long> dBAcessos = new Dictionary<string, long>();
+
+dBAcessos.Add("ch1", 1231213132231);
+dBAcessos.Add("ch2", 9834567895264);
+dBAcessos.Add("ch3", 4895758132469);
+dBAcessos.Add("ch4", 2457478964521);
 
 try {
     // CAPTURANDO ESCOLHA DO USUARIO
@@ -18,10 +31,9 @@ try {
 
     // VERIFICAR SE A OPÇAO É VÁLIDA
     if(opcaoSelecionadaDoMenuInicial == 1) {
-        // FAÇA ISSO
-        Console.Clear();
-        Console.WriteLine("## PACS - Sistema de Controle de Acesso ##\n");
 
+        LimparTela();
+        NomeSistema();
         Console.WriteLine("INSIRA A SUA CHAVE SECRETA PARA ACESSAR O SISTEMA");
         
         // REALIZANDO UM TRATAMENTO DE ERRO PARA QUE O SISTEMA NÃO APRESENTE O
@@ -29,13 +41,10 @@ try {
         try{
             long? secretKey = Convert.ToInt64(Console.ReadLine());
 
-            if(secretKey == 3964686216615814260) {
-                Console.Clear();
-                Console.WriteLine("ACESSO LIBERADO!");
-            } else {
-                Console.Clear();
-                Console.WriteLine("ACESSO NEGADO!");
+            foreach(KeyValuePair<string, long> vkp in dBAcessos) {
+                Console.WriteLine($"Chave {vkp.Key}: {vkp.Value}");
             }
+            
         } catch(Exception e) {
             Console.WriteLine($"TIPO DE CARACTER INVÁLIDO. ERROR => {e.Message}");
         }
