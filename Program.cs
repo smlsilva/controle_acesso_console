@@ -1,4 +1,4 @@
-﻿void NomeSistema(){
+﻿void BemVindoSistema(){
     Console.WriteLine("## PACS - Sistema de Controle de Acesso ##\n");
 }
 
@@ -15,7 +15,7 @@ void LimparTela(){
     Console.Clear();
 }
 
-NomeSistema();
+BemVindoSistema();
 MenuIncial();
 
 Dictionary<string, long> dBAcessos = new Dictionary<string, long>();
@@ -33,7 +33,7 @@ try {
     if(opcaoSelecionadaDoMenuInicial == 1) {
 
         LimparTela();
-        NomeSistema();
+        BemVindoSistema();
         Console.WriteLine("INSIRA A SUA CHAVE SECRETA PARA ACESSAR O SISTEMA");
         
         // REALIZANDO UM TRATAMENTO DE ERRO PARA QUE O SISTEMA NÃO APRESENTE O
@@ -70,7 +70,7 @@ try {
             }
 
         } catch(Exception e) {
-            Console.WriteLine("TUDO ERRADO!");
+            Console.WriteLine("TUDO ERRADO!" + e.Message);
         }
 
     } else if(opcaoSelecionadaDoMenuInicial == 3) {
