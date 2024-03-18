@@ -1,4 +1,6 @@
-﻿void BemVindoSistema(){
+﻿using ControleAcesso.Cadastrar;
+
+void BemVindoSistema(){
     Console.WriteLine("## PACS - Sistema de Controle de Acesso ##\n");
 }
 
@@ -11,19 +13,19 @@ void MenuInicial(){
     Console.WriteLine("4 - SAIR\n");
 }
 
+void ListarChaves() {
+    Console.WriteLine("DESEJA LISTAR TODAS AS CHAVES CADASTRADAS ?");
+    Console.WriteLine("################################");
+    Console.WriteLine("1 - SIM");
+    Console.WriteLine("2 - NÃO");
+}
+
 void LimparTela(){
     Console.Clear();
 }
 
 BemVindoSistema();
 MenuInicial();
-
-Dictionary<string, long> dBAcessos = new Dictionary<string, long>();
-
-dBAcessos.Add("ch1", 1231213132231);
-dBAcessos.Add("ch2", 9834567895264);
-dBAcessos.Add("ch3", 4895758132469);
-dBAcessos.Add("ch4", 2457478964521);
 
 try {
     // CAPTURANDO ESCOLHA DO USUARIO
@@ -39,12 +41,33 @@ try {
         // REALIZANDO UM TRATAMENTO DE ERRO PARA QUE O SISTEMA NÃO APRESENTE O
         // ERRO DIRETAMENTE PARA O USUÁRIO
         try{
-            long? secretKey = Convert.ToInt64(Console.ReadLine());
+            long secretKey = Convert.ToInt64(Console.ReadLine());
+            Cadastrar cadastro = new Cadastrar();
+            cadastro.setchaveUsuario(secretKey);
+            cadastro.AddChaveDeUsuario(cadastro.getchaveUsuario());
 
-            foreach(KeyValuePair<string, long> vkp in dBAcessos) {
-                Console.WriteLine($"Chave {vkp.Key}: {vkp.Value}");
+            LimparTela();
+            ListarChaves();
+
+            try {
+                int? opcaoListarChavesCadastradas = Convert.ToUInt16(Console.ReadLine());
+                switch(opcaoListarChavesCadastradas){
+                    case 1:
+                        Console.WriteLine("Todas as Chaves Cadastradas Abaixo:");
+                        cadastro.ListarChavesCadastradas();
+                        break;
+                    case 2:
+                        Console.WriteLine("Tchau :)");
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        LimparTela();
+                        MenuInicial();
+                        break;
+                }
+            } catch(Exception error) {
+                Console.WriteLine($"Error => {error.Message}");
             }
-            
         } catch(Exception e) {
             Console.WriteLine($"TIPO DE CARACTER INVÁLIDO. ERROR => {e.Message}");
         }
