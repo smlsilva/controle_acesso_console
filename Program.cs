@@ -2,7 +2,7 @@
     Console.WriteLine("## PACS - Sistema de Controle de Acesso ##\n");
 }
 
-void MenuIncial(){
+void MenuInicial(){
     Console.WriteLine("SELECIONE UMA DAS OPÇÕES ABAIXO:");
     Console.WriteLine("################################");
     Console.WriteLine("1 - ACESSAR O SISTEMA");
@@ -16,7 +16,7 @@ void LimparTela(){
 }
 
 BemVindoSistema();
-MenuIncial();
+MenuInicial();
 
 Dictionary<string, long> dBAcessos = new Dictionary<string, long>();
 
