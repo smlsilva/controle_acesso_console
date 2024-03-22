@@ -15,26 +15,6 @@ void Programa(){
                 break;
             case 2:
                 LimparTela();
-                Console.WriteLine("INSIRA A SUA CHAVE DE ADMINISTRADOR PARA CADASTRAR USUÁRIO");
-                Console.WriteLine("##########################################################");
-                
-                try {
-                    
-                    // PEGANDO (GET) O VALOR DIGITADO PELO O USUARIO
-                    long? keyAdmUser = Convert.ToInt64(Console.ReadLine());
-                    
-                    if(keyAdmUser == 123456) {
-                        LimparTela();
-                        Console.WriteLine("ACESSO LIBERADO PARA CADASTRAR USUARIOS");
-                        
-                        // DESENVOLVER SISTEMA PARA CADASTRAR USUARIO
-                    } else {
-                        LimparTela();
-                    }
-
-                } catch(Exception e) {
-                    Console.WriteLine("TUDO ERRADO!" + e.Message);
-                }
                 break;
             case 3:
                 LimparTela();
@@ -69,6 +49,47 @@ void Programa(){
     
 }
 
+void RealizarLogin(string? loginAdm, long secretKey) {
+
+    Cadastrar cadastro = new Cadastrar();
+    cadastro.setloginUsuario(loginAdm);
+
+    if(!cadastro.VerificarUsuarioExistente(cadastro.getloginUsuario())) {
+        Console.WriteLine("Login não encontrado!\n");
+
+        Console.WriteLine("PRESSIONE ALGUMA TECLA PARA SEGUIR");
+        Console.ReadKey();
+
+        Programa();
+    } else {
+        // VERIFICAR SENHA PARA ENTRAR NO SISTEMA
+        cadastro.setchaveUsuario(secretKey);
+        if(cadastro.ChecarCredenciaisUsuario()){
+            LimparTela();
+            Console.WriteLine("ACESSO LIBERADO!");
+        } else {
+            LimparTela();
+            Console.WriteLine("USUARIO OU SENHA ESTÃO INCORRETOS!\n");
+
+            Console.WriteLine("PRESSIONE A TECLA 'R' PARA VOLTAR OU 'I' PARA VOLTAR AO MENU");
+            try  {
+                char continuarNoSistema = Convert.ToChar(Console.ReadLine());
+                if(continuarNoSistema == 'R') {
+                    LoginAdm();
+                } else if (continuarNoSistema == 'I') {
+                    Programa();
+                } else {
+                    Console.WriteLine("\nOpções inválidas tente novamente");
+                    RealizarLogin(loginAdm, secretKey);
+                }
+            } catch(Exception error) {
+                Console.WriteLine($"\nOpções Inválidas {error.Message}");
+                RealizarLogin(loginAdm, secretKey);
+            }
+        }
+    }
+}
+
 void LoginAdm() {
     try{
         Console.WriteLine("Coloque o seu Login:");
@@ -77,32 +98,8 @@ void LoginAdm() {
         Console.WriteLine("\nInsira a sua senha:");
         long secretKey = Convert.ToInt64(Console.ReadLine());
 
-        Cadastrar cadastro = new Cadastrar();
-        cadastro.setloginUsuario(loginAdm);
-
-        if(!cadastro.VerificarUsuarioExistente(cadastro.getloginUsuario())) {
-            Console.WriteLine("Login não encontrado!\n");
-
-            Console.WriteLine("PRESSIONE ALGUMA TECLA PARA SEGUIR");
-            Console.ReadKey();
-
-            Programa();
-        } else {
-            // VERIFICAR SENHA PARA ENTRAR NO SISTEMA
-            cadastro.setchaveUsuario(secretKey);
-            if(cadastro.ChecarCredenciaisUsuario()){
-                LimparTela();
-                Console.WriteLine("ACESSO LIBERADO!");
-            } else {
-                LimparTela();
-                Console.WriteLine("USUARIO OU SENHA ESTÃO INCORRETOS!");
-
-                Console.WriteLine("PRESSIONE A TECLA 'R' PARA CONTINUAR");
-                Console.ReadKey();
-
-                LoginAdm();
-            }
-        }
+        RealizarLogin(loginAdm, secretKey);
+        
     } catch(Exception e) {
         Console.WriteLine($"TIPO DE CARACTER INVÁLIDO. ERROR => {e.Message}");
     }
